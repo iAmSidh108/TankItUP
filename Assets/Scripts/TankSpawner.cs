@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
+    [System.Serializable]
+    public class Tank
+    {
+        public float movementSpeed;
+        public float rotationSPeed;
+        public TankTypes tankTypes;
+        public Material color;
+    }
+
+    public List<Tank> Tanks;
     public TankView tankView;
     public Transform[] spawnPoints;
     void Start()
@@ -32,7 +42,7 @@ public class TankSpawner : MonoBehaviour
 
     private void CreateTank()
     {
-        TankModel tankModel = new TankModel(30,20);
+        TankModel tankModel = new TankModel(Tanks[2].movementSpeed, Tanks[2].rotationSPeed, Tanks[2].tankTypes,Tanks[2].color);
         TankController tankController = new TankController(tankView, tankModel);
     }
 }
