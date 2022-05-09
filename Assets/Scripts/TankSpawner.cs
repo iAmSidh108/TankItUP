@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
-    public GameObject tankPrefab;
+    public TankView tankView;
     public Transform[] spawnPoints;
     void Start()
     {
-        //
-        foreach (Transform sPoint in spawnPoints)
-        {
-            sPoint.gameObject.SetActive(false);
-        }
 
-        Transform newTrans = GetSpawnPoints();
-        Instantiate(tankPrefab, newTrans.position, newTrans.rotation);
+        /* foreach (Transform sPoint in spawnPoints)
+         {
+             sPoint.gameObject.SetActive(false);
+         }
+        */
+        // Transform newTrans = GetSpawnPoints();
+        //Instantiate(tankView.gameObject, newTrans.position, newTrans.rotation);
+        CreateTank();
 
     }
 
@@ -27,5 +28,11 @@ public class TankSpawner : MonoBehaviour
     public Transform GetSpawnPoints()
     {
         return spawnPoints[Random.Range(0, spawnPoints.Length)];
+    }
+
+    private void CreateTank()
+    {
+        TankModel tankModel = new TankModel();
+        TankController tankController = new TankController(tankView, tankModel);
     }
 }
